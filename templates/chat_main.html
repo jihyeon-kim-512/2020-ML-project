@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <title>chat-main</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/chat_main.css') }}">
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"
+        integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I="
+        crossorigin="anonymous" charset='UTF-8'></script>
+</head>
+<body>
+  <header>
+    <div class="title">Ga Ge ViEW</div>
+    <div class="title_head">
+      <button type="button" id="st_btn"
+       onClick="location.href='#'">
+        <img src="../static/image/setting_btn.png" style=" width : 45px; ">
+      </button>
+    </div>
+	</header>
+
+  <div class="show_main">
+    <div class="show_cnt">
+      <div id="summ">
+
+        <button type="button" id="money_btn" style="width:80%; height:70px;"
+         onClick="location.href='http://localhost:5000/summoney'">
+         <p><b>합계: </b> {{moneySum}} 원</p>
+        </button>
+        <button type="button" id="money_btn" style="width:80%; height:70px;"
+         onClick="location.href='http://localhost:5000/inmoney'">
+         <p><b>수입: </b> {{iMoney}} 원</p>
+        </button>
+        <button type="button" id="money_btn" style="width:80%; height:70px;"
+         onClick="location.href='http://localhost:5000/exmoney'">
+         <p><b>지출: </b> {{eMoney}} 원</p>
+        </button>
+
+      </div>
+    </div>
+  </div>
+  <div class="show_main">
+    <div class="show_btn">
+      <button type="button" id="page_btn" style=" margin-right: 3%; "
+       onClick="location.href='http://localhost:5000/chatimage'">
+        <img src="../static/image/image_btn.png" style="width:220px;">
+      </button>
+      <button type="button" id="page_btn"
+       onClick="location.href='http://localhost:5000/chatbot'">
+        <img src="../static/image/chat_btn.png" style="width:220px;">
+      </button>
+    </div>
+  </div>
+
+</body>
+</html>

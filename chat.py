@@ -62,7 +62,7 @@ def chat_bot():
 
 @app.route('/chatimage/')
 def chat_image():
-    return render_template('chat_image.html')
+    return render_template('img_pre.html')
 
 
 

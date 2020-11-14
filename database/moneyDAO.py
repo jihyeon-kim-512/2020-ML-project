@@ -65,7 +65,7 @@ def AllDetail():
     conn = connection.get_connection()
 
     sql = '''
-        select date, money, place from assets
+        select date, money, place, inex from assets
         order by date desc;
     '''
 
@@ -73,7 +73,7 @@ def AllDetail():
     cursor.execute(sql)
     AD = cursor.fetchall()
     cursor.close()
-
+    
     return AD
 
 #금액 수입 함수

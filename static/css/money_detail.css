@@ -36,10 +36,51 @@ body {  background-color:#A9D18E; overflow:hidden;}
 
 #summ {
         float: left;
-        width:100%; height:90%;
-        padding-top: 25px;
-        overflow-y: scroll;
+        width:100%;
+        height: 93%;
+        margin-top: 25px;
       }
+
+
+.scroll_box {
+  height: 100%;
+  -ms-overflow-style: none; /* IE and Edge */
+  overflow-y: scroll;
+}
+
+.scroll_box::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+
+
+.txt_date {
+        display: flex;
+        font-size:11px;
+        height:30px;
+        align-items: center;
+}
+
+
+.txt_date::before {
+      	content: "";
+      	flex-grow: 1;
+      	background: rgba(0, 0, 0, 0.35);
+      	height: 1px;
+      	font-size: 0px;
+      	line-height: 0px;
+      	margin: 0px 16px;
+}
+
+
+.txt_date::after {
+      	content: "";
+      	flex-grow: 1;
+      	background: rgba(0, 0, 0, 0.35);
+      	height: 1px;
+      	font-size: 0px;
+      	line-height: 0px;
+      	margin: 0px 16px;
+}
 
 
 @media (max-width:600px){ /*가로 너비가 600px 이하일 때 아래 스타일 적용*/

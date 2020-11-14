@@ -16,12 +16,12 @@
   <div class="show_main" >
     <div class="show_cnt">
       <div id="summ">
-        {% set d = null %}
+      <div class="scroll_box">
           {%for i in range(0, AM|length) %}
-            {% if d!=AM[i][0] %}
-            <p style="font-size:11px; height:30px;">{{AM[i][0]}}</p>
+          {% set d = AM[i-1][0] %}
+            {% if AM[i][0]!=d %}
+            <p class="txt_date">{{AM[i][0]}}</p>
             {% endif %}
-
         <button type="button" id="money_btn" style="width:100%; height:70px;"
          onClick="location.href='#">
          <div style="width:40%; float:left; text-align: left; margin-left:9%;">
@@ -31,11 +31,16 @@
 
          <div style="width:40%; height: 100%; display: flex;
          align-items: center; text-align:right; margin-right:9%;">
-           <p style="width:100%;">{{AM[i][1]}}원</p>
+         {% if AM[i][3]==1 %}
+           <p style="width:100%; color:#0914e6;">{{AM[i][1]}}원</p>
+          {% elif AM[i][3]==0 %}
+           <p style="width:100%;">- {{AM[i][1]}}원</p>
+           {% endif %}
          </div>
         </button>
-        {% set d = AM[i][0] %}
+
        {% endfor %}
+               </div>
     </div>
     </div >
   </div >

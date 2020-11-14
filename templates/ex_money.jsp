@@ -16,27 +16,28 @@
   <div class="show_main" >
     <div class="show_cnt">
       <div id="summ">
-        {% set d = null %}
-          {%for i in range(0, EM|length) %}
-            {% if d!=EM[i][0] %}
-              {% print(EM[i][0]) %}
+        <div class="scroll_box">
+        {%for i in range(0, EM|length) %}
+        {% set d = EM[i-1][0] %}
+          {% if EM[i][0]!=d %}
+          <p class="txt_date">{{EM[i][0]}}</p>
+          {% endif %}
 
-           <button type="button" id="money_btn" style="width:100%; height:70px;"
-            onClick="location.href='#">
-            <div style="width:40%; float:left; text-align: left; margin-left:9%;">
-              <p style="margin-bottom:5px;">{{EM[i][2]}}</p>
-              <p style="font-size: 11px;">{{EM[i][0]}}</p>
-            </div>
+      <button type="button" id="money_btn" style="width:100%; height:70px;"
+       onClick="location.href='#">
+       <div style="width:40%; float:left; text-align: left; margin-left:9%;">
+         <p style="margin-bottom:5px;">{{EM[i][2]}}</p>
+         <p style="font-size: 12px;">{{EM[i][0]}}</p>
+       </div>
 
-            <div style="width:40%; height: 100%; display: flex;
-            align-items: center; text-align:right; margin-right:9%;">
-              <p style="width:100%;">{{EM[i][1]}}원</p>
-            </div>
-           </button>
-           {% set d= EM[i][0] %}
-         {% endif %}
-       {% endfor %}
+       <div style="width:40%; height: 100%; display: flex;
+       align-items: center; text-align:right; margin-right:9%;">
+         <p style="width:100%;">- {{EM[i][1]}}원</p>
+       </div>
+      </button>
+     {% endfor %}
     </div>
+  </div>
     </div >
   </div >
 

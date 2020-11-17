@@ -10,38 +10,50 @@ header {
 	text-align: center;
 }
 
-.chat_wrap .chat {
+body { overflow:hidden;}
+
+.chat_wrap .contents {
+	height: 720px;
+	-ms-overflow-style: none; /* IE and Edge */
+	overflow-y: scroll;
+}
+
+.chat_wrap .contents::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+
+.chat_wrap .contents .chat {
 	padding-top: 50px;
 	padding-bottom: 80px;
 }
 
-.chat_wrap .chat ul {
+.chat_wrap .contents .chat ul {
 	width: 100%;
 	list-style: none;
 }
 
-.chat_wrap .chat ul li {
+.chat_wrap .contents .chat ul li {
 	width: 100%;
 }
 
-.chat_wrap .chat ul li.left {
+.chat_wrap .contents .chat ul li.left {
 	text-align: left;
 }
 
-.chat_wrap .chat ul li.right {
+.chat_wrap .contents .chat ul li.right {
 	text-align: right;
 }
 
 
-.chat_wrap .chat ul li > div {
+.chat_wrap .contents .chat ul li > div {
 	font-size: 13px;
 }
 
-.chat_wrap .chat ul li > div.sender {
+.chat_wrap .contents .chat ul li > div.sender {
 	margin: 10px 20px 0 20px; font-weight: bold;
 }
 
-.chat_wrap .chat ul li > div.message {
+.chat_wrap .contents .chat ul li > div.message {
 	display: inline-block;
 	word-break:break-all;
 	margin: 5px 20px;

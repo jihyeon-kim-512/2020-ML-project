@@ -10,7 +10,7 @@
 </head>
 <body>
   <header>
-    <div class="title">Ga Ge ViEW</div>
+    <div class="title">AI 재무관리 프로젝트</div>
    </header>
 
   <div class="show_main" >
@@ -33,7 +33,7 @@
          align-items: center; text-align:right; margin-right:9%;">
          {% if AM[i][3]==1 %}
            <p style="width:100%; color:#0914e6;">{{AM[i][1]}}원</p>
-          {% elif AM[i][3]==0 %}
+          {% elif AM[i][3]==-1 %}
            <p style="width:100%;">- {{AM[i][1]}}원</p>
            {% endif %}
          </div>

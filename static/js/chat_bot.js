@@ -72,7 +72,7 @@ socket.on( 'my response', function( msg ) {
 function appendMessageTag(LR_className, senderName, message) {
     const chatLi = createMessageTag(LR_className, senderName, message);
     // 스크롤바 아래 고정
-    $('div.chat_wrap').scrollTop($('div.chat_wrap').prop('scrollHeight'));
+    $("div.contents").scrollTop($("div.contents")[0].scrollHeight);
     $('div.chat:not(.format) ul').append(chatLi);
 
 }

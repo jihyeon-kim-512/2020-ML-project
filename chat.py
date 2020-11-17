@@ -1,8 +1,8 @@
 from datetime import date, timedelta
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from flask_socketio import SocketIO
 import pymysql
-from database import moneyDAO, botDAO, joinDAO
+from database import moneyDAO, botDAO, joinDAO, modifyDAO, deleteDAO
 import time
 import json
 
@@ -36,7 +36,7 @@ def chat_start2():
 @app.route('/summoney/')
 def sum_money():
     AM = moneyDAO.AllDetail()
-
+    print(AM)
     return render_template('sum_money.jsp', AM=AM)
 
 @app.route('/inmoney/')
@@ -83,15 +83,62 @@ def start_event():
 def handle_my_custom_event(json, methods=['GET', 'POST']):
     socketio.emit('my response', json, callback=messageReceived)
 
-    if ("입력" in json.setdefault('message')) :
-        InOut = True
-        userIn = botDAO.sayInput_1()
+    if ("지출" in json.setdefault('message') and "입력" in json.setdefault('message')) :
+        userIn = botDAO.sayInput_1(-1)
+        socketio.emit('start_chat', userIn)
+
+    if ("수입" in json.setdefault('message') and "입력" in json.setdefault('message')) :
+        userIn = botDAO.sayInput_1(1)
         socketio.emit('start_chat', userIn)
 
     if ("여기까지" in json.setdefault('message')) :
+        botDAO.sayInput_1(0)
         socketio.emit('start_chat', '네, 처리해 드렸습니다 :>')
 
     botDAO.sayInput_2(json)
+
+
+@app.route('/chatmember/', methods = ['GET', 'POST'])
+def chat_member():
+    return render_template('chat_member_modify.html')
+
+
+@app.route('/update/', methods = ['GET', 'POST'])
+def updateDB():
+    userName2 = request.form.get('name')
+    userSsn2 = request.form.get('ssn')
+    userselect2 = request.form.get('select')
+    userPhone2 = request.form.get('phone')
+
+    print('update')
+
+    if not (userName2 and userSsn2 and userPhone2) :
+        return render_template('chat_member_modify.html')
+
+    modifyDAO.modifyUser(userName2, userSsn2, userPhone2, userselect2)
+
+    return redirect('/chatmember/')
+
+
+
+
+
+@app.route('/delete/', methods = ['GET', 'POST'])
+def deleteDB():
+    userName2 = request.form.get('name')
+    userSsn2 = request.form.get('ssn')
+    userselect2 = request.form.get('select')
+    userPhone2 = request.form.get('phone')
+
+    print('delete')
+
+    if not (userName2 and userSsn2 and userPhone2) :
+        return render_template('chat_member_modify.html')
+
+    deleteDAO.deleteUser(userName2, userSsn2, userPhone2, userselect2)
+
+    return redirect('/chatmember/')
+
 
 
 

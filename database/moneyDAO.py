@@ -8,7 +8,7 @@ def moneySum():
 
     sql = '''
         select sum(case when inex=1 then money end)
-        	   - sum(case when inex=0 then money end)
+        	   - sum(case when inex=-1 then money end)
         from assets;
     '''
 
@@ -28,7 +28,7 @@ def moneyExpend():
     sql = '''
         select sum(money)
         from assets
-        where inex=0
+        where inex=-1
     '''
 
     cursor = conn.cursor()
@@ -73,7 +73,7 @@ def AllDetail():
     cursor.execute(sql)
     AD = cursor.fetchall()
     cursor.close()
-    
+
     return AD
 
 #금액 수입 함수
@@ -99,7 +99,7 @@ def ExDetail():
 
     sql = '''
         select date, money, place from assets
-        where inex=0
+        where inex=-1
         order by date desc;
     '''
 

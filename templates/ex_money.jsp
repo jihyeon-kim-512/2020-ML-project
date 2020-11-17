@@ -10,7 +10,7 @@
 </head>
 <body>
   <header>
-    <div class="title">Ga Ge ViEW</div>
+    <div class="title">AI 재무관리 프로젝트</div>
    </header>
 
   <div class="show_main" >

@@ -1,6 +1,10 @@
 import pymysql
 from database import connection
 import numpy as np
+from datetime import datetime
+
+now = datetime.now()
+mm=now.month
 
 #금액 합계 함수
 def moneySum():
@@ -9,11 +13,12 @@ def moneySum():
     sql = '''
         select sum(case when inex=1 then money end)
         	   - sum(case when inex=-1 then money end)
-        from assets;
+        from assets
+        where month(date) = %s;
     '''
 
     cursor = conn.cursor()
-    cursor.execute(sql)
+    cursor.execute(sql, mm)
     MS = cursor.fetchall()
 
     cursor.close()
@@ -28,11 +33,11 @@ def moneyExpend():
     sql = '''
         select sum(money)
         from assets
-        where inex=-1
+        where inex=-1 and month(date) = %s;
     '''
 
     cursor = conn.cursor()
-    cursor.execute(sql)
+    cursor.execute(sql, mm)
     IM = cursor.fetchall()
 
     cursor.close()
@@ -47,12 +52,12 @@ def moneyIncome():
     sql = '''
         select sum(money)
         from assets
-        where inex=1;
+        where inex=1 and month(date) = %s;
     '''
 
 
     cursor = conn.cursor()
-    cursor.execute(sql)
+    cursor.execute(sql, mm)
     EM = cursor.fetchall()
 
     cursor.close()
@@ -65,12 +70,13 @@ def AllDetail():
     conn = connection.get_connection()
 
     sql = '''
-        select date, money, place, inex from assets
+        select date, money, place, something, inex from assets
+        where month(date) = %s
         order by date desc;
     '''
 
     cursor = conn.cursor()
-    cursor.execute(sql)
+    cursor.execute(sql, mm)
     AD = cursor.fetchall()
     cursor.close()
 
@@ -81,13 +87,13 @@ def InDetail():
     conn = connection.get_connection()
 
     sql = '''
-        select date, money, place from assets
-        where inex=1
+        select date, money, place, something from assets
+        where inex=1 and month(date) = %s
         order by date desc;
     '''
 
     cursor = conn.cursor()
-    cursor.execute(sql)
+    cursor.execute(sql, mm)
     ID = cursor.fetchall()
     cursor.close()
 
@@ -98,13 +104,13 @@ def ExDetail():
     conn = connection.get_connection()
 
     sql = '''
-        select date, money, place from assets
-        where inex=-1
+        select date, money, place, something from assets
+        where inex=-1 and month(date) = %s
         order by date desc;
     '''
 
     cursor = conn.cursor()
-    cursor.execute(sql)
+    cursor.execute(sql, mm)
     ED = cursor.fetchall()
     cursor.close()
 

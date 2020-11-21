@@ -10,8 +10,21 @@
 </head>
 <body>
   <header>
-    <div class="title">AI 재무관리 프로젝트</div>
-   </header>
+    <div class="title_head">
+    <div class="title">
+      <button type="button" id="home_btn"
+      onClick="location.href='http://localhost:5000/chatmain/'">AI 재무관리 프로젝트</button>
+     </div>
+     <button type="button" id="chart_btn"
+      onClick="location.href='#'">
+       <img src="../static/image/setting_btn.png" style=" width : 35px; ">
+     </button>
+     <button type="button" id="new_btn"
+      onClick="location.href='http://localhost:5000/inputform/'">
+       <img src="../static/image/setting_btn.png" style=" width : 35px; ">
+     </button>
+    </div>
+	</header>
 
   <div class="show_main" >
     <div class="show_cnt">
@@ -24,9 +37,13 @@
           {% endif %}
 
       <button type="button" id="money_btn" style="width:100%; height:70px;"
-       onClick="location.href='#">
+       onClick="location.href='http://localhost:5000/updateform/'">
        <div style="width:40%; float:left; text-align: left; margin-left:9%;">
+         {% if IM[i][3] == '' %}
          <p style="margin-bottom:5px;">{{IM[i][2]}}</p>
+         {% else %}
+         <p style="margin-bottom:5px;">{{IM[i][3]}}</p>
+         {% endif %}
          <p style="font-size: 12px;">{{IM[i][0]}}</p>
        </div>
 

@@ -10,8 +10,21 @@
 </head>
 <body>
   <header>
-    <div class="title">AI 재무관리 프로젝트</div>
-   </header>
+    <div class="title_head">
+    <div class="title">
+      <button type="button" id="home_btn"
+      onClick="location.href='http://localhost:5000/chatmain/'">AI 재무관리 프로젝트</button>
+     </div>
+     <button type="button" id="chart_btn"
+      onClick="location.href='#'">
+       <img src="../static/image/setting_btn.png" style=" width : 35px; ">
+     </button>
+     <button type="button" id="new_btn"
+      onClick="location.href='http://localhost:5000/inputform/'">
+       <img src="../static/image/setting_btn.png" style=" width : 35px; ">
+     </button>
+    </div>
+	</header>
 
   <div class="show_main" >
     <div class="show_cnt">
@@ -23,20 +36,24 @@
             <p class="txt_date">{{AM[i][0]}}</p>
             {% endif %}
         <button type="button" id="money_btn" style="width:100%; height:70px;"
-         onClick="location.href='#">
-         <div style="width:40%; float:left; text-align: left; margin-left:9%;">
-           <p style="margin-bottom:5px;">{{AM[i][2]}}</p>
-           <p style="font-size: 12px;">{{AM[i][0]}}</p>
-         </div>
+         onClick="location.href='http://localhost:5000/updateform/'">
+           <div style="width:40%; float:left; text-align: left; margin-left:9%;">
+             {% if AM[i][3] == '' %}
+             <p style="margin-bottom:5px;">{{AM[i][2]}}</p>
+             {% else %}
+             <p style="margin-bottom:5px;">{{AM[i][3]}}</p>
+             {% endif %}
+             <p style="font-size: 12px;">{{AM[i][0]}}</p>
+           </div>
 
-         <div style="width:40%; height: 100%; display: flex;
-         align-items: center; text-align:right; margin-right:9%;">
-         {% if AM[i][3]==1 %}
-           <p style="width:100%; color:#0914e6;">{{AM[i][1]}}원</p>
-          {% elif AM[i][3]==-1 %}
-           <p style="width:100%;">- {{AM[i][1]}}원</p>
-           {% endif %}
-         </div>
+           <div style="width:40%; height: 100%; display: flex;
+           align-items: center; text-align:right; margin-right:9%;">
+           {% if AM[i][4]==1 %}
+             <p style="width:100%; color:#0914e6;">{{AM[i][1]}}원</p>
+            {% elif AM[i][4]==-1 %}
+             <p style="width:100%;">- {{AM[i][1]}}원</p>
+             {% endif %}
+           </div>
         </button>
 
        {% endfor %}

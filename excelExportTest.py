@@ -13,23 +13,19 @@ mm=now.month
 
 print(mm)
 
+from database import connection
 
-#Database Connection
-conn = pymysql.connect(
-    host='127.0.0.1',
-    user='root',
-    password='machinegun',
-    db='mydb',
-    charset='utf8'
-)
+
+conn = connection.get_connection()
 
 sql = '''
     select date, place, something, money, inex, category_category_id
-    from assets;
+    from assets
+    where user_id =%s
 '''
 
 cursor = conn.cursor()
-cursor.execute(sql)
+cursor.execute(sql, '01032323232')
 result = cursor.fetchall()
 
 # CSV 저장

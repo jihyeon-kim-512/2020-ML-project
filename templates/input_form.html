@@ -2,7 +2,8 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>AI 재무관리 프로젝트</title>
+    <title>AI 자산관리 프로젝트</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/input_form.css">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"
         integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I="
@@ -14,24 +15,26 @@
 </head>
 <body>
 
-    <form action="/summoney/" method="POST">
+    <header>
+        <div class="title">AI 자산관리 프로젝트</div>
+    </header>
+    <form action="/dbinput/" method="post">
     <div class = "main">
         <div class = "form">
-          <img src="../static/image/appicon.png" class = "app_icon" alt="My Image" width = "130" height="130">
-            <select name = "what_money" class="what_money" onchange="categoryChange(this)">
+            <select name = "whatmoney" class="what_money" onchange="categoryChange(this)">
                 <option>수집/지출 선택</option>
                 <option value="a">지출</option>
                 <option value="b">수입</option>
             </select>
         <!-- 지출일 경우의 category-->
 
-        <select name = "m_category" class ="m_category" id="categorize">
+        <select name = "mcategory" class ="m_category" id="categorize">
             <option>서브 카테고리</option>
         </select>
 
-            <input id ="date" class = "date" type="date" value="2020-11-01"/> <!-- 날짜 입력 폼 -->
-            <input id ="content" class = "content" placeholder="항목 입력" />
-            <input id ="money" class = "money" placeholder="지출 내역 입력" />
+            <input id ="date" name="date" class = "date" type="date" /> <!-- 날짜 입력 폼 -->
+            <input id ="content" name="content" class = "content" placeholder="항목 입력" />
+            <input id ="money" name="money" class = "money" placeholder="지출 내역 입력" />
             <input id ="input_btn" class="input_btn" type="submit" value="추가"/>
         </div>
     </div>

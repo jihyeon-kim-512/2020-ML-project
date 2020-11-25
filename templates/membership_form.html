@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>AI 자산관리 프로젝트 로그인</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"
+        integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I="
+        crossorigin="anonymous" charset='UTF-8'></script>
+    <!-- CSS connect -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/membership_form.css') }}">
+
+</head>
+<body>
+    <header>
+        <div class="title">AI 자산관리 프로젝트</div>
+    </header>
+    <form action="/" method="post">
+      <div class="membership">
+          <div class="form">
+              <input type="text" name="ID" class="ID" placeholder="전화번호 입력">
+              <input type="password" name="PW" class="PW" placeholder="비밀번호 입력">
+              <center>
+                  <input class="login" type="submit" value="로그인">
+                  <input class="login" type="button" onclick="location.href='http://localhost:5000/chatstart'" value="회원가입">
+              </center>
+          </div>
+      </div>
+    </form>
+</body>
+</html>

@@ -98,3 +98,15 @@ def limitChk(userPhone):
     cursor.close()
 
     return limit
+
+def limitChange(userPhone):
+    conn = connection.get_connection()
+
+    sql = "update user_table set limit_m = null where phone_num = %s"
+    cursor = conn.cursor()
+    cursor.execute(sql, (userPhone))
+    conn.commit()
+
+    cursor.close()
+
+    return

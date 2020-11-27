@@ -10,11 +10,14 @@
 </head>
 <body>
   <header>
-    <div class="title">Ga Ge ViEW</div>
     <div class="title_head">
+    <div class="title">
+      <button type="button" id="home_btn"
+      onClick="location.href='http://localhost:5000/chatmain/'">AI 자산관리 프로젝트</button>
+     </div>
       <button type="button" id="st_btn"
-       onClick="location.href='#'">
-        <img src="../static/image/setting_btn.png" style=" width : 45px; ">
+       onclick="location.href='http://localhost:5000/chatsetting'">
+        <img src="../static/image/setting_btn.png" style=" width : 35px; ">
       </button>
     </div>
 	</header>
@@ -25,18 +28,61 @@
 
         <button type="button" id="money_btn" style="width:80%; height:70px;"
          onClick="location.href='http://localhost:5000/summoney'">
+         {% if moneySum == None %}
+           {% if iMoney == None %}
+           <p><b>합계: </b> {{0-eMoney}} 원</p>
+           {% elif eMoney == None %}
+           <p><b>합계: </b> {{iMoney-0}} 원</p>
+           {% else %}
+           <p><b>합계: </b> 0 원</p>
+           {% endif %}
+         {% else %}
          <p><b>합계: </b> {{moneySum}} 원</p>
+         {% endif %}
         </button>
         <button type="button" id="money_btn" style="width:80%; height:70px;"
          onClick="location.href='http://localhost:5000/inmoney'">
+         {% if iMoney == None %}
+         <p><b>수입: </b> 0 원</p>
+         {% else %}
          <p><b>수입: </b> {{iMoney}} 원</p>
+         {% endif %}
         </button>
         <button type="button" id="money_btn" style="width:80%; height:70px;"
          onClick="location.href='http://localhost:5000/exmoney'">
+         {% if eMoney == None %}
+         <p><b>지출: </b> 0 원</p>
+         {% else %}
          <p><b>지출: </b> {{eMoney}} 원</p>
+         {% endif %}
         </button>
 
       </div>
+    </div>
+  </div>
+  <div class="show_main">
+    <div id="money_notice">
+      {% if limit != None %}
+        {% if limit < eMoney %}
+        <p>
+          목표지출액 {{limit}}원에서 {{limit-eMoney}}원 넘어섰습니다 (｡•́︿•̀｡)
+        </p>
+        {% elif limit*0.4 < (limit-eMoney) %}
+        <p>
+          목표지출액은 {{limit}}원 입니다. 남은 금액은 {{limit-eMoney}}원 입니다.<br/>
+          잘하고 있어요! (๑و•̀Δ•́)و
+        </p>
+        {% else %}
+        <p>
+          목표지출액은 {{limit}}원 입니다. 남은 금액은 {{limit-eMoney}}원 입니다.<br/>
+          자제하세요 ヽ(ಠ_ಠ)ノ
+        </p>
+        {% endif %}
+      {% else %}
+      <p>
+        목표지출액을 설정하시면 경고 알림을 드립니다 ✧*.◟(ˊᗨˋ)◞.*✧
+      </p>
+      {% endif %}
     </div>
   </div>
   <div class="show_main">

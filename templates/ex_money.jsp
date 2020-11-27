@@ -16,7 +16,7 @@
       onClick="location.href='http://localhost:5000/chatmain/'">AI 자산관리 프로젝트</button>
      </div>
      <button type="button" id="chart_btn"
-      onclick="location.href='http://localhost:5000/chatsetting'">
+      onclick="location.href='http://localhost:5000/piechart'">
        <img src="../static/image/chart_btn.png" style=" width : 35px; ">
      </button>
      <button type="button" id="new_btn"

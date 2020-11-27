@@ -1,15 +1,10 @@
-# import nlptest
-#
-# json = {
-#     'name'  : "KJH",
-#     'msg'   : "어제 1000원짜리 김밥을 먹었다"
-# }
-#
-# print(json)
-# nlptest.haha(json)
-# print('*' + str(json))
 
 from flask import Flask, render_template, request
+from database import moneyDAO
+from datetime import datetime
+
+now = datetime.now()
+mm=now.month
 
 app = Flask(__name__)
 
@@ -25,5 +20,30 @@ def view():
     print(userName)
 
 
+@app.route('/line')
+def line():
+    print('linepass')
+    in_mon = moneyDAO.linechart('01000000001', 1)
+    ex_mon = moneyDAO.linechart('01000000001', -1)
+    print(in_mon[0][0], ex_mon[1][0])
+    incnt = len(in_mon)
+    excnt = len(ex_mon)
+    return render_template('googlechart.html', in_mon=in_mon, ex_mon=ex_mon, incnt=incnt, excnt=excnt, mm=mm)
+
+
+@app.route('/pie')
+def pie():
+    print('piepass')
+    result = moneyDAO.categoryMoney('01000000001', -1)
+
+    for i in range(0,len(result)):
+        if result[i] == None:
+            result[i] = 0
+
+    print(result)
+    return render_template('piechart.html', result=result)
+
+
+
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)

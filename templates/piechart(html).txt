@@ -1,0 +1,107 @@
+<html>
+  <head>
+
+    <title>chat-main</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/chart_page.css') }}">
+  	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"
+          integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I="
+          crossorigin="anonymous" charset='UTF-8'></script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      // 가상화 API와 차트 패키지 로드.
+      google.charts.load('current', {'packages':['corechart']});
+
+  //++++++++++++++++++++++++ 구조- B ++++++++++++++++++++++++++++++++++++++++++++++++
+      // 구글 가상화 API 로드하기 위한 콜백 설정
+      google.charts.setOnLoadCallback(drawChart);
+
+  //++++++++++++++++++++++++ 구조- C ++++++++++++++++++++++++++++++++++++++++++++++++
+      // 데이터 테이블을 만들고 채우는 콜백,
+      // 파이차트 객체에 데이터를 넣고 차트를 그림
+      function drawChart() {
+        // 데이터 테이블
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', '카테고리');
+        data.addColumn('number', '금액');
+        data.addRows([
+          ['의류', {{result[0]}}],
+          ['뷰티', {{result[1]}}],
+          ['생활비', {{result[2]}}],
+          ['여행', {{result[3]}}],
+          ['교통비', {{result[4]}}],
+          ['식비', {{result[5]}}],
+          ['기타', {{result[6]}}]
+        ]);
+
+
+  //++++++++++++++++++++++++ 구조-D ++++++++++++++++++++++++++++++++++++++++++++++++
+        // 차트 옵션 설정
+        var options = {'title':'이번달 지출 내역',
+                       'width':400,
+                       'height':260,
+                       'fill': '#ffffff00',
+                       'chartArea':{'width': '100%', 'height': '80%'}};
+
+  //++++++++++++++++++++++++ 구조-E ++++++++++++++++++++++++++++++++++++++++++++++++
+        // 옵션을 전달하여 차트를 인스턴스화하고 그린다.
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+
+    <style>
+      rect{
+        fill-opacity:0;
+      }
+    </style>
+  </head>
+
+  <!--+++++++++++++++++++++++ 구조-F +++++++++++++++++++++++++++++++++++++++++++++-->
+  <body>
+    <header>
+      <div class="title_head">
+      <div class="title">
+        <button type="button" id="home_btn"
+        onClick="location.href='http://localhost:5000/chatmain/'">AI 자산관리 프로젝트</button>
+       </div>
+        <button type="button" id="st_btn"
+         onclick="location.href='http://localhost:5000/chatsetting'">
+          <img src="../static/image/setting_btn.png" style=" width : 35px; ">
+        </button>
+      </div>
+  	</header>
+
+    <div class="show_main">
+      <div class="show_cnt">
+        <!--Div that will hold the pie chart-->
+        <div id="chart_div"></div>
+        </div>
+    </div>
+
+    <div class="show_main">
+      <div class="show_btn">
+        <center style="width:450px;">
+
+          <button type="button" id="page_btn1"
+           onClick="location.href='http://localhost:5000/'">
+           수입/지출 비교
+          </button>
+          <button type="button" id="page_btn2" style=" margin-right: 4%; margin-top:5%;"
+           onClick="location.href='http://localhost:5000/chatbot'">
+           월간지출 항목비교
+          </button>
+          <button type="button" id="page_btn2" style=" margin-top:5%;"
+           onClick="location.href='http://localhost:5000/chatimage'">
+           월간수입 항목비교
+          </button>
+
+      </center>
+      </div>
+    </div>
+
+  </body>
+
+
+</html>

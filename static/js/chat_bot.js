@@ -1,8 +1,6 @@
 //웹 소켓 연결
 var socket = io.connect('http://' + document.domain + ':' + location.port);
 
-//사용자명 임시 설정 (나중에 사용자명 받아와서 저장)
-const user_name = "김미미";
 
 //웹페이지에 소켓이 연결되면 실행
 socket.on( 'connect', function() {
@@ -40,7 +38,6 @@ function message_form() {
             //공백이 아니면 소켓으로 다음의 데이터 전송
 
             socket.emit( 'my event', {
-                user_name  : user_name,
                 message    : user_input
             } )
 
@@ -62,7 +59,7 @@ socket.on( 'start_chat' ,function(ans) {
 socket.on( 'my response', function( msg ) {
     //콘솔창에서 수신된 json 확인
     console.log( msg );
-    appendMessageTag("right", msg.user_name, msg.message);
+    appendMessageTag("right", user_name, msg.message);
 
 })
 

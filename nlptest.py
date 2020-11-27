@@ -12,16 +12,18 @@ okt = Okt()
 
 # from konlpy.tag import Kkma
 # kkma = Kkma()
-
+num = 0
 # print(okt.pos("오늘 사랑드림에서 짜장밥을 먹어서 5000원을 썼다."))
-# print(okt.nouns("오늘 사랑드림에서 짜장밥을 먹어서 5000원을 썼다."))
+print(okt.nouns("오늘 사랑드림에서 불고기라이스 5000원"))
+# vi = okt.pos("오늘 사랑드림에서 짜장밥을 먹어서 5000원을 썼다.")
+
 
 today = date.today()
 yesterday = date.today() - timedelta(1)
 
 # def haha(json):
     # txt = okt.morphs(json['msg'])
-txt = okt.morphs('어제 새우볶음밥 5000원')
+txt = okt.morphs('오늘 용돈 80 000원')
 time_list = ['어제', '오늘']
 
 if time_list[0] in txt:

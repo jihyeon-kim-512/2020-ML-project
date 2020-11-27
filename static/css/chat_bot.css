@@ -13,7 +13,7 @@ header {
 body { overflow:hidden;}
 
 .chat_wrap .contents {
-	height: 720px;
+	height: 650px;
 	-ms-overflow-style: none; /* IE and Edge */
 	overflow-y: scroll;
 }

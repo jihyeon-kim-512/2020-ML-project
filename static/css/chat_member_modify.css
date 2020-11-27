@@ -1,0 +1,183 @@
+*{ margin: 0;
+   padding: 0;
+   //background-color: #A9D18E}
+
+ .title { display: grid;
+         font-family: 'Black Han Sans', sans-serif;
+         font-style: normal;
+         url(https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap);
+         font-size: 50px;
+         position: relative;
+         text-shadow: 2px 2px 7px rgba(46,46,46,0.3);
+         padding: 15px 0;
+         color: white;
+         text-align: center;
+         }
+
+
+.join_wrap .main { display: grid; text-align: center; background-color: #A9D18E; text-align: center;align-items: center;}
+.join_wrap .main .contents { min-height: 800px;
+                             display: flex;
+                             align-items: center;
+                             justify-content: center;
+                             margin-bottom: 5px;
+                             flex-direction: column;}
+
+.join_wrap .main .contents .app_icon { margin-bottom: 20px;}
+
+.join_wrap .main .contents .join_input { background-color: white;
+                                         border-radius: 7px 7px 7px 7px;
+                                         text-align: left;
+                                         width: 460px;
+                                         padding: 15px 30px;
+                                         font-size: 16px;
+                                         margin: 4px 2px;
+                                         margin-bottom: 5px;
+                                         border:none;}
+.join_wrap .main .contents .join_input_com { background-color: #fff;
+                                             border-radius: 7px 7px 7px 7px;
+                                             text-align: left;
+                                             width: 460px;
+                                             background:white;
+                                             padding: 15px 30px;
+                                             font-size: 16px;
+                                             margin: 4px 2px;
+                                             margin-bottom: 5px;
+                                             border:none;}
+.join_wrap .main .contents .join_input_com_option { background-color: #fff;
+                                                    border-radius: 7px 7px 7px 7px;
+                                                    text-align: left;
+                                                    width: 400px;
+                                                    background:white;
+                                                    padding: 15px 30px;
+                                                    font-size: 16px;
+                                                    margin: 4px 2px;
+                                                    margin-bottom: 5px;
+                                                    border:none;}
+
+
+* {box-sizing: border-box;}
+
+/* Set a style for all buttons */
+.modify, .withdraw {
+  background-color: #4CAF50;
+  border-radius: 7px 7px 7px 7px;
+  color: white;
+  padding: 15px 30px;
+  margin: 4px 2px;
+  border: none;
+  cursor: pointer;
+  width: 460px;
+  opacity: 0.9;
+}
+
+button:hover {
+  opacity:1;
+}
+
+/* Float cancel and delete buttons and add an equal width */
+.cancelbtn, .deletebtn {
+
+  border-radius: 7px 7px 7px 7px;
+  color: white;
+  padding: 15px 30px;
+  margin: 4px 2px;
+  border: none;
+  cursor: pointer;
+  width: 460px;
+  opacity: 0.9;
+}
+
+/* Add a color to the cancel button */
+.cancelbtn {
+  background-color: #ccc;
+  color: black;
+}
+
+/* Add a color to the delete button */
+.deletebtn {
+  background-color: #f44336;
+}
+
+/* Add padding and center-align text to the container */
+.container01, .container02 {
+  padding: 16px;
+  text-align: center;
+  background-color: #fefefe;
+}
+
+/* The Modal (background) */
+.modal01, .modal02 {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: #A9D18E;
+  padding-top: 50px;
+}
+
+/* Modal Content/Box */
+.modal-content01 {
+  background-color: #fefefe;
+  margin: 5px auto 15px auto; /* 5% from the top, 15% from the bottom and centered */
+
+  width: 100%; /* Could be more or less, depending on screen size */
+}
+
+
+.modal-content01
+/* Style the horizontal ruler */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* The Modal Close Button (x) */
+.close {
+  position: absolute;
+  right: 35px;
+  top: 15px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #f1f1f1;
+}
+
+.close:hover,
+.close:focus {
+  color: #f44336;
+  cursor: pointer;
+}
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.clearfix1::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Change styles for cancel button and delete button on extra small screens */
+@media screen and (max-width: 300px) {
+  .cancelbtn, .deletebtn {
+     width: 100%;
+  }
+}
+
+
+
+@media (max-width:600px){ /*가로 너비가 600px 이하일 때 아래 스타일 적용*/
+    #main {
+        display: block;
+    }
+}
+
+.format { display: none; }

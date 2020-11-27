@@ -1,7 +1,6 @@
 import pymysql
-from database import connection
+from database import connection, dataProcessing
 import numpy as np
-import re
 
 from datetime import date, timedelta
 from konlpy.tag import Okt
@@ -31,7 +30,7 @@ def sayHello():
 
 
 #입력하겠다는 채팅이 들어왔을 때
-def sayInput_1(n):
+def sayInput_1(n,userPhone):
 
     global num
     num = n
@@ -56,7 +55,7 @@ def sayInput_1(n):
 
 
 #채팅 내용 저장
-def sayInput_2(json):
+def sayInput_2(json,userPhone):
 
     global num
     print(num)
@@ -69,6 +68,20 @@ def sayInput_2(json):
 
     if num !=0 :
         time_list = ['어제', '오늘']
+
+        result = dataProcessing.somethings(json['message'])
+        place = result[0]
+        print(result[1])
+        str = result[1].split(' ')
+        for i in str:
+            get_ctg = dataProcessing.category(i)
+
+        thing = get_ctg[0]
+        ctg = get_ctg[1]
+
+        print(thing)
+        print(ctg)
+
 
         if time_list[0] in txt:
             date = yesterday.strftime('%Y-%m-%d')
@@ -84,49 +97,21 @@ def sayInput_2(json):
             # print(vv)
             if vv[0][1]=='Number' :
                 money = vv[0][0]
-                for a in re.finditer('원', money) :
-                    endstr = a.start()
-                    try :
-                        sum += int(money[:endstr])
-                    except :
-                        money = (money[:endstr])
-                        print('e')
-                    # print(sum)
-                for b in re.finditer('십', money) :
-                    bs = b.start()
-                    be = b.end()
-                    sum += int(money[:bs] + '0' + money[be:])
-                    # print(sum)
-                for b in re.finditer('백', money) :
-                    bs = b.start()
-                    be = b.end()
-                    sum += int(money[:bs] + '00' + money[be:])
-                    # print(sum)
-                for b in re.finditer('천', money) :
-                    bs = b.start()
-                    be = b.end()
-                    sum += int(money[:bs] + '000' + money[be:])
-                    # print(sum)
-                for b in re.finditer('만', money) :
-                    bs = b.start()
-                    be = b.end()
-                    sum = int(money[:bs] + '0000' + money[be:])
-                    # print(sum)
-
+                sum = dataProcessing.cash_change(money)
             else :
                 continue
 
-            print('날짜: ' + date + '\n금액: ' + str(sum))
 
-        if (money != 0) :
-            sql = '''insert into chat_content(date, user_id, money, inex) values (%s, %s, %s, %s)'''
-            cursor = conn.cursor()
-            cursor.execute(sql, (date, json['user_name'], sum, num))
-            conn.commit()
+    if (money != 0) :
+        sql = '''insert into assets(date, user_id, place, something, money, inex, category_category_id)
+                 values (%s, %s, %s, %s, %s, %s, %s)'''
+        cursor = conn.cursor()
+        cursor.execute(sql, (date, userPhone, place, thing, sum, num, ctg))
+        conn.commit()
 
     sql = '''insert into chat_said(user_id, said) values (%s, %s)'''
     cursor = conn.cursor()
-    cursor.execute(sql, (json['user_name'], json['message']))
+    cursor.execute(sql, (userPhone, json['message']))
     conn.commit()
 
     cursor.close()

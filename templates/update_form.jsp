@@ -16,7 +16,7 @@
   <header>
       <div class="title">AI 자산관리 프로젝트</div>
   </header>
-  <form action="/dbupdate/{{p6}}" method="post">
+  <form  method="post">
     <div class = "main">
         <div class = "form">
             <select name = "whatmoney" class="what_money" onclick="categoryChange(this)">
@@ -60,7 +60,10 @@
             <input name="date" id ="date" class = "date" type="date" value={{p2}} /> <!-- 날짜 입력 폼 -->
             <input name="content" id ="content" class = "content" placeholder="항목 입력" value={{p3}} />
             <input name="money" id ="money" class = "money" placeholder="금액 입력" value={{p4}} />
-            <input id ="input_btn" class="input_btn" type="submit" value="추가"/>
+            <center>
+            <input id ="input_btn" class="input_btn" type="submit" formaction="http://localhost:5000/dbdelete/{{p6}}" value="삭제"/>
+            <input id ="input_btn" class="input_btn" type="submit" formaction="http://localhost:5000/dbupdate/{{p6}}" value="수정"/>
+          </center>
         </div>
     </div>
   </form>

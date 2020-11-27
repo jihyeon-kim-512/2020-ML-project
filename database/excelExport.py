@@ -1,7 +1,10 @@
 import pymysql
 import pandas as pd
 from database import connection
+from datetime import datetime
 
+now = datetime.now()
+title = now.strftime('%Y-%m-%d')
 def excelExport(userPhone) :
     conn = connection.get_connection()
 
@@ -37,7 +40,7 @@ def excelExport(userPhone) :
 
 
     raw_data1 = pd.DataFrame(raw_data)
-    xlxs_dir='20201124.xlsx'
+    xlxs_dir= str(title)+'.xlsx'
 
     with pd.ExcelWriter(xlxs_dir) as writer:
         raw_data1.to_excel(writer, sheet_name='Sheet1', index=False)

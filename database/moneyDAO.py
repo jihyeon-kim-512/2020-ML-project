@@ -116,6 +116,7 @@ def ExDetail(userPhone):
     return ED
 
 
+
 # 직접입력 폼
 def formInput(userPhone, what_money, m_category, date, content, money):
     conn = connection.get_connection()
@@ -143,6 +144,7 @@ def formInput(userPhone, what_money, m_category, date, content, money):
         m_category = 8
     elif m_category == '기타':
         m_category = 9
+
 
     print(m_category)
     sql = '''
@@ -198,3 +200,49 @@ def formUpdate(userPhone, what_money, m_category, date, content, money, path):
     cursor.close()
 
     return
+
+
+#삭제 폼
+def formDelete(userPhone, path):
+    conn = connection.get_connection()
+
+    sql = '''
+            DELETE FROM assets
+            WHERE user_id = %s and assets_id = %s;
+    '''
+
+    cursor = conn.cursor()
+    cursor.execute(sql, (userPhone, path))
+    conn.commit()
+    cursor.close()
+
+    return
+
+
+
+# 카테고리별 금액
+def categoryMoney(userPhone, nm):
+    conn = connection.get_connection()
+
+    sql = '''
+            select sum(money) from assets
+            where (inex = %s and category_category_id = %s) and (user_id = %s and month(date) = %s);
+    '''
+
+
+    sum = []
+    cursor = conn.cursor()
+
+    for i in range(1,7):
+        cursor.execute(sql, (nm, i, userPhone, mm))
+        sum.append(cursor.fetchall()[0][0])
+
+    cursor.execute(sql, (nm, 9, userPhone, mm))
+    sum.append(cursor.fetchall()[0][0])
+
+    print(sum)
+
+
+    cursor.close()
+
+    return sum

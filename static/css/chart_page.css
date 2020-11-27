@@ -47,24 +47,23 @@ body {  background-color:#A9D18E; }
         }
 
 
-
-.btn_box {
-           margin-top:3%;
-           margin-left:23%;
-          }
-
-
-#page_btn {
+#page_btn1 {
          background-color:transparent;
-         border:0; outline:1;
+         width: 360px;
+         padding:15px 20px;
+         border-radius: 0.5em;
+         border: 2px solid #A9D18E;
+         outline: 0;
        }
 
-#money_btn {
-         background-color:transparent;
-         border: 0.3px solid #e8e8e8;
-         outline:0;
-         font-size:100%;
-       }
+#page_btn2 {
+        background-color:transparent;
+        width: 170px;
+        padding:15px 20px;
+        border-radius: 0.5em;
+        border: 2px solid #A9D18E;
+        outline: 0;
+      }
 
 
 .show_main .show_cnt {
@@ -77,36 +76,17 @@ body {  background-color:#A9D18E; }
        }
 
 
-#money_notice {
-         display: flex;
-         justify-content: center;
-         align-items: center;
-         text-align: center;
-         background-color: white;
-         border-radius: 1em;
-         width: 460px; height: 80px;
-         margin-top: 10px;
-}
-
-#money_notice > p {
-         font-size : 13px;
-         color : #cf0426;
-         font-weight : bold;
-}
-
 
 .show_main .show_btn {
          width: 460px; height: 220px;
-         text-align: left;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         border-radius: 1em;
          margin-top: 20px;
+         background-color: white;
       }
 
- #summ {
-         float: left;
-         text-align:center;
-         width:100%;
-         padding-top: 25px;
-       }
 
 
 #chart_div {

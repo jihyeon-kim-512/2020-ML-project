@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modify</title>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+     <!-- <link rel="stylesheet" href="../static/css/chat_member_modify.css"> -->
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/chat_member_modify.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename = 'js/chat_member_modify.js') }}"></script>
+    <!-- <script src="../static/css/chat_member_modify.css"></script> -->
+</head>
+<body>
+  <div class="join_wrap">
+    <div id="main" class="main">
+    <form method="POST">
+
+        <div id="contents" class="contents">
+            <div class="title">AI 자산관리 프로젝트</div>
+            <input id="name" name="name" class="join_input" placeholder="이름" value={{userInfo[0][0]}}></input>
+            <input class="join_input" value={{userInfo[0][1]}} disabled></input>
+            <input class="join_input" value={{userInfo[0][3]}} disabled></input>
+            <input class="join_input" value={{userInfo[0][2]}} disabled></input>
+            <input id="pw" name="pw" type="password" class="join_input" placeholder="비밀번호"></input>
+                <button id="modify_btn" class="modify" type="button" onclick="document.getElementById('id01').style.display='block'">수정</button>
+
+                    <div id="id01" class="modal01">
+                      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
+                        <div class="container01">
+                          <h1>개인정보를 수정하시겠습니까?</h1>
+
+                          <div class="clearfix">
+                            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">취소</button>
+                            <button type="submit" formaction="http://localhost:5000/update/" class="deletebtn">확인</button>
+                          </div>
+                        </div>
+                    </div>
+
+                <button id="withdraw_btn" class="withdraw" type="button" onclick="document.getElementById('id02').style.display='block'">탈퇴</button>
+
+                    <div id="id02" class="modal02">
+                      <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">×</span>
+                        <div class="container02">
+                          <h1>회원탈퇴를 하시겠습니까?</h1>
+
+                          <div class="clearfix1">
+                            <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">취소</button>
+                            <button type="submit" name="" formaction="http://localhost:5000/delete/" class="deletebtn">확인</button>
+                          </div>
+                        </div>
+                    </div>
+
+        </div>
+
+    </form>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,5 +1,5 @@
 from datetime import date, timedelta
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, session
 from flask_socketio import SocketIO
 import pymysql
 from database import moneyDAO, botDAO, joinDAO, modifyDAO, deleteDAO, excelExport
@@ -88,15 +88,12 @@ def img_pre():
 def chat_start2():
     global userPhone
     print('main '+ userPhone)
-    # userName = request.form['name']
-    # userPhone = request.form['phone']
-    # print(userName, userPhone)
-
+    limit = joinDAO.limitChk(userPhone)
     moneySum = moneyDAO.moneySum(userPhone)
     eMoney = moneyDAO.moneyExpend(userPhone)
     iMoney = moneyDAO.moneyIncome(userPhone)
 
-    return render_template('chat_main.html', moneySum=moneySum[0][0], eMoney=eMoney[0][0], iMoney=iMoney[0][0])
+    return render_template('chat_main.jsp', moneySum=moneySum[0][0], eMoney=eMoney[0][0], iMoney=iMoney[0][0], limit=limit[0][0])
 
 
 @app.route('/chatsetting/')
@@ -104,6 +101,13 @@ def chat_setting():
     global userPhone
     limit = joinDAO.limitChk(userPhone)
     return render_template('chat_setting.jsp', limit=limit[0][0])
+
+@app.route('/checklimit/<path>')
+def chat_setting2(path):
+    print(path)
+    global userPhone
+    joinDAO.limitChange(userPhone)
+    return redirect('/chatsetting/')
 
 
 @app.route('/limitmoney/', methods=['GET', 'POST'])
@@ -120,6 +124,14 @@ def excel_export():
     print('excel'+userPhone)
     excelExport.excelExport(userPhone)
     return redirect('/chatsetting/')
+
+
+@app.route('/logout/')
+def logout():
+    global userPhone
+    userPhone = ''
+    session.clear()
+    return redirect('/')
 
 
 @app.route('/summoney/', methods=['GET', 'POST'])
@@ -183,10 +195,33 @@ def update_form2(path):
 
     return redirect('/summoney/')
 
+@app.route("/dbdelete/<path>",methods=['GET', 'POST'] )
+def delete_form(path):
+    global userPhone
+    moneyDAO.formDelete(userPhone, path)
+
+    return redirect('/summoney/')
+
+
+@app.route('/piechart/')
+def pie():
+    print('piepass')
+    global userPhone
+    result = moneyDAO.categoryMoney(userPhone, -1)
+
+    for i in range(0,len(result)):
+        if result[i] == None:
+            result[i] = 0
+
+    print(result)
+    return render_template('piechart.html', result=result)
+
 
 @app.route('/chatbot/')
 def chat_bot():
-    return render_template('chat_bot.html')
+    global userPhone
+    userInfo = joinDAO.userinfo(userPhone)
+    return render_template('chat_bot.html', name=userInfo[0][0])
 
 
 
@@ -251,7 +286,7 @@ def updateDB():
 
     modifyDAO.modifyUser(userName, pw, userPhone)
 
-    return redirect('/chatmember/')
+    return redirect('/chatsetting/')
 
 
 
